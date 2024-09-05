@@ -10,14 +10,19 @@
     <h1>Расписание на {{ day_name }}</h1>
     <div class="schedule">
       {% if schedule %}
-        {% for item in schedule %}
-          <div class="schedule-item">
-            <div class="schedule-time">{{ item.split('., ')[0] }}</div>
-            <div class="schedule-description">{{ item.split(', ')[1:] | join(', ') }}</div>
-          </div>
-        {% else %}
+        {% if schedule[0] == 'Нет занятий' %}
           <p>Нет занятий</p>
-        {% endfor %}
+        {% else %}
+          {% for item in schedule %}
+            {% set parts = item.split('., ', 1) %} 
+            <div class="schedule-item">
+              <div class="schedule-time">{{ parts[0] }}</div>
+              <div class="schedule-description">{{ parts[1] }}</div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% else %}
+        <p>Нет занятий</p>
       {% endif %}
     </div>
     <div style="text-align:center;">
@@ -26,3 +31,7 @@
     </div>
   </body>
 </html>
+
+
+
+   
