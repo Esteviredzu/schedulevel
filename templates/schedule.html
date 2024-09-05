@@ -12,7 +12,7 @@
       {% if schedule %}
         {% for item in schedule %}
           <div class="schedule-item">
-            <div class="schedule-time">{{ item.split(', ')[0] }}</div>
+            <div class="schedule-time">{{ item.split('., ')[0] }}</div>
             <div class="schedule-description">{{ item.split(', ')[1:] | join(', ') }}</div>
           </div>
         {% else %}
