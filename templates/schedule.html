@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Расписание</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <h1>Расписание на {{ day_name }}</h1>
+    <div class="schedule">
+      {% if schedule %}
+        {% for item in schedule %}
+          <div class="schedule-item">
+            <div class="schedule-time">{{ item.split(', ')[0] }}</div>
+            <div class="schedule-description">{{ item.split(', ')[1:] | join(', ') }}</div>
+          </div>
+        {% else %}
+          <p>Нет занятий</p>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div style="text-align:center;">
+      <a href='/tomorrow'>На завтра</a>
+      <a href='/'>На сегодня</a>
+    </div>
+  </body>
+</html>
